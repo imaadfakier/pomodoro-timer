@@ -92,28 +92,16 @@ checkmark_label = tkinter.Label(font=(FONT_NAME, 8, 'bold'), bg=YELLOW, fg=GREEN
 checkmark_label.grid(column=1, row=3)
 
 # buttons
-# start_button = tkinter.Button(text='Start')
-# start_button = tkinter.Button(text='Start', highlightthickness=0)
 start_button = tkinter.Button(text='Start', highlightthickness=0, command=start_timer)
 start_button.grid(column=0, row=2)
 
-# reset_button = tkinter.Button(text='Reset')
-# reset_button = tkinter.Button(text='Reset', highlightthickness=0)
 reset_button = tkinter.Button(text='Reset', highlightthickness=0, command=reset_timer)
 reset_button.grid(column=2, row=2)
 
 # creating a canvas (i.e. the canvas widget); width and height are in pixels
-# canvas = tkinter.Canvas(width=200, height=224)
-# canvas = tkinter.Canvas(width=200, height=224, bg=YELLOW)
 canvas = tkinter.Canvas(width=200, height=224, bg=YELLOW, highlightthickness=0)
 tomato_photo = tkinter.PhotoImage(file='./tomato.png')
-# canvas.create_image(100, 112, image=tomato_photo)  # centering tomato image
-# canvas.create_image(102, 112, image=tomato_photo)  # to prevent part of tomato image
-                                                   # being cut off
 canvas.create_image(100, 112, image=tomato_photo)
-# canvas.create_text(102, 112, text='00:00')
-# canvas.create_text(102, 130, text='00:00', fill='white', font=(FONT_NAME, 35, 'bold'))
-# canvas.create_text(100, 130, text='00:00', fill='white', font=(FONT_NAME, 35, 'bold'))
 timer_text = canvas.create_text(100, 130, text='00:00', fill='white', font=(FONT_NAME, 35, 'bold'))
 # canvas.pack()
 canvas.grid(column=1, row=1)
@@ -161,24 +149,11 @@ def count_down(count):
                           # type of count_sec from a variable of type str to a variable
                           # of type int
     elif count_sec < 10:
-        # count_sec = '0'.join(str(count_sec))
-        # count_sec = '0' + str(count_sec)
-        # count_sec = '0{}'.format(count_sec)
         count_sec = f'0{count_sec}'
-    # canvas.itemconfig(tagOrId=timer_text, text=count)
     canvas.itemconfig(tagOrId=timer_text, text='{minutes}:{seconds}'.format(minutes=count_min, seconds=count_sec))
-    # canvas.itemconfig(tagOrId=timer_text, text=f'{count_min}:{count_sec}')
     if count == 0:
-        # return
-        # start_timer()
-        # return
         if reps % 2 > 0:
             checkmark_label['text'] += '✔'
-        # marks = ''
-        # work_sessions = math.floor(reps / 2)
-        # for _ in range(work_sessions):
-        #     marks += '✔'
-        # checkmark_label.config(text=marks)
         start_timer()
         return
     # window.after(1000, count_down, count - 1)
